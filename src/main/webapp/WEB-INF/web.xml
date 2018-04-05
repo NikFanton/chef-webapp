@@ -5,4 +5,24 @@
          id="Jersey-IMS-Task-ID" version="3.0">
   <display-name>Archetype Created Web Application</display-name>
 
+  <servlet>
+    <servlet-name>Servlet</servlet-name>
+    <servlet-class>ua.training.controller.Servlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Servlet</servlet-name>
+    <url-pattern>/create-salad/*</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>ua.training.controller.filter.EncodingFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/create-salad/*</url-pattern>
+  </filter-mapping>
+
 </web-app>
