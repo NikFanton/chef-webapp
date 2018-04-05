@@ -1,7 +1,7 @@
-package ua.training.model.entity.builder;
+package ua.training.model.builder;
 
 import ua.training.model.entity.Salad;
-import ua.training.model.entity.vegetable.Vegetable;
+import ua.training.model.entity.vegetable.IVegetable;
 
 public abstract class AbstractSaladBuilder {
     public Salad salad;
@@ -14,10 +14,9 @@ public abstract class AbstractSaladBuilder {
         return salad;
     }
 
-    public AbstractSaladBuilder addVegetable(Vegetable vegetable) {
+    protected void addVegetable(IVegetable vegetable) {
         salad.getVegetables().add(vegetable);
-        return this;
     }
 
-    public abstract void buildSalad();
+    public abstract void addAllIngredients();
 }
