@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 
 public class ViewSalad implements Command {
-    private static ResourceBundle bundle = ResourceBundle.getBundle("vegetables", new Locale("ru"));
+    private static ResourceBundle bundle = ResourceBundle.getBundle("vegetables", new Locale("en"));
 
     @Override
     public String execute(HttpServletRequest req) {
