@@ -1,22 +1,22 @@
 package ua.training.controller.command;
 
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
-import ua.training.model.entity.vegetable.Vegetable;
-import ua.training.model.entity.vegetable.VegetableDataBase;
+import ua.training.model.dao.VegetableDAO;
+import ua.training.model.dao.impl.VegetableDAOImpl;
+import ua.training.model.entity.Vegetable;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 public class CreateSalad implements Command {
-    private static ResourceBundle bundle = ResourceBundle.getBundle("vegetables", new Locale("ru"));
+    private static ResourceBundle bundle = ResourceBundle.getBundle("vegetables", new Locale("en"));
 
     @Override
     public String execute(HttpServletRequest req) {
-        List<Vegetable> vegetables = new ArrayList<>();
-        List<VegetableDataBase> vegetablesFromDB = Arrays.asList(VegetableDataBase.values());
-        for (VegetableDataBase vegetable : vegetablesFromDB) {
+        VegetableDAO vegetableDAO = new VegetableDAOImpl();
+        List<Vegetable> vegetables = vegetableDAO.getAll();
+        for (Vegetable vegetable : vegetables) {
             String name = bundle.getString("vegetable." + vegetable.getName());
-            vegetables.add(new Vegetable(name, vegetable.getCaloriesPerHundredGrams(), 0));
+            vegetable.setName(name);
         }
         req.setAttribute("vegetables", vegetables);
         return "/view/create-salad.jsp";

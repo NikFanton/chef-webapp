@@ -1,15 +1,34 @@
-package ua.training.model.entity.vegetable;
+package ua.training.model.entity;
 
-public class Vegetable implements IVegetable {
+public class Vegetable {
+    private Long id;
     private String name;
-    // TODO cast calories to int
     private int calories;
     private double weight;
+
+    public Vegetable(String name, int calories) {
+        this.name = name;
+        this.calories = calories;
+    }
+
+    public Vegetable(Long id, String name, int calories) {
+        this.id = id;
+        this.name = name;
+        this.calories = calories;
+    }
 
     public Vegetable(String name, int calories, double weight) {
         this.name = name;
         this.calories = calories;
         this.weight = weight;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -39,14 +58,10 @@ public class Vegetable implements IVegetable {
     @Override
     public String toString() {
         return "Vegetable{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", calories=" + calories +
                 ", weight=" + weight +
                 '}';
-    }
-
-    @Override
-    public GroupOfVegetables getGroupOfVegetables() {
-        return null;
     }
 }

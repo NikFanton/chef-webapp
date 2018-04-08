@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +34,7 @@ public class Servlet extends HttpServlet {
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getRequestURI();
         System.out.println(path);
-        path = path.replaceAll(".*/chef-webapp/", "");
+        path = path.replaceAll(".*/api/", "");
         System.out.println(path);
         Command command = commandMap.getOrDefault(path, r -> "/index.jsp");
         String pagePath = command.execute(req);

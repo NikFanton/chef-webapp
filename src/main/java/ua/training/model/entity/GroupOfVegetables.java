@@ -1,4 +1,4 @@
-package ua.training.model.entity.vegetable;
+package ua.training.model.entity;
 
 public enum GroupOfVegetables {
     UNKNOWN("Unknown"),

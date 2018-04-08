@@ -1,4 +1,6 @@
 package ua.training.model.dao;
 
-public class VegetableDAO {
+import ua.training.model.entity.Vegetable;
+
+public interface VegetableDAO extends GenericDAO<Vegetable, Long> {
 }

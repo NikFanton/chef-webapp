@@ -56,14 +56,14 @@
             </tbody>
         </table>
         <div class="row">
-            <label for="inputMinCalories" class="col-sm-4 col-form-label">Highlight diapason of calories</label>
+            <label for="inputMinCalories" class="col-sm-3 col-form-label">Diapason of calories</label>
             <div class="col-sm-4">
                 <input type="number" class="form-control" id="inputMinCalories" placeholder="min" name="mincal" min="0">
             </div>
             <div class="col-sm-4">
                 <input type="number" class="form-control" id="inputMaxCalories" placeholder="max" name="maxcal" min="0">
             </div>
-            <button type="submit" class="btn btn-primary btn-submit" id="filter">Filter</button>
+            <button type="submit" class="col-sm-1 btn btn-primary btn-submit" id="filter">Filter</button>
         </div>
     </div>
     <script>
@@ -92,7 +92,7 @@
         document.getElementById('filter').addEventListener('click', function () {
             var tbody = document.getElementsByTagName('tbody')[0];
             tbody.innerHTML = '';
-            console.log(min, max)
+            console.log(min, max);
             for (var item of data) {
                 if (item.calories >= min && item.calories <= max) {
                     tbody.innerHTML += '<tr>' +

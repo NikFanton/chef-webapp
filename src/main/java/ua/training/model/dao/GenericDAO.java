@@ -1,4 +1,8 @@
 package ua.training.model.dao;
 
-public class GenericDAO<> {
+import java.util.List;
+
+public interface GenericDAO<Type, Key> {
+    List<Type> getAll();
+    Type getById(Key id);
 }

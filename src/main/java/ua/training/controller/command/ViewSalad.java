@@ -1,7 +1,8 @@
 package ua.training.controller.command;
 
-import ua.training.model.entity.vegetable.Vegetable;
-import ua.training.model.entity.vegetable.VegetableDataBase;
+import ua.training.model.dao.VegetableDAO;
+import ua.training.model.dao.impl.VegetableDAOImpl;
+import ua.training.model.entity.Vegetable;
 import ua.training.model.service.CaloriesService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ public class ViewSalad implements Command {
         return "/view/show-salad.jsp";
     }
 
+//   ToDo return List of vegetable
     private void sortVegetables(HttpServletRequest req, List<Vegetable> vegetables) {
         String sortByParameter = req.getParameterMap().getOrDefault("sortBy", new String[]{"name"})[0];
         if (sortByParameter.equals("name")) {
@@ -38,7 +40,6 @@ public class ViewSalad implements Command {
         Pattern pattern = Pattern.compile("w([0-9]+)");
         for (String key : req.getParameterMap().keySet()) {
             if (pattern.matcher(key).matches() && !req.getParameterMap().get(key)[0].equals("")) {
-                // TODO Instead of buildVegetable() create method in DAO getById()
                 Vegetable newVegetable = buildVegetable(req, key);
                 vegetables.add(newVegetable);
             }
@@ -48,10 +49,14 @@ public class ViewSalad implements Command {
 
     private Vegetable buildVegetable(HttpServletRequest req, String key) {
         Double weight = Double.parseDouble(req.getParameterMap().get(key)[0]);
-        int index = Integer.parseInt(key.replace("w", ""));
-        VegetableDataBase vegetableInfo = VegetableDataBase.values()[index];
-        String name = bundle.getString("vegetable." + vegetableInfo.getName());
-        System.out.println(name);
-        return new Vegetable(name, vegetableInfo.getCaloriesPerHundredGrams(), weight);
+        VegetableDAO vegetableDAO = new VegetableDAOImpl();
+        Long id = Long.valueOf(key.replace("w", ""));
+        Vegetable vegetable = vegetableDAO.getById(id);
+        String name = bundle.getString("vegetable." + vegetable.getName());
+        if (name != null) {
+            vegetable.setName(name);
+        }
+        vegetable.setWeight(weight);
+        return vegetable;
     }
 }

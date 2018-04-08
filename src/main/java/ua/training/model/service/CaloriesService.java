@@ -1,6 +1,6 @@
 package ua.training.model.service;
 
-import ua.training.model.entity.vegetable.Vegetable;
+import ua.training.model.entity.Vegetable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,18 +12,6 @@ public class CaloriesService {
             totalCalories += calcCalories(v);
         }
         return totalCalories;
-    }
-
-    public static List<Vegetable> getVegetablesWithCaloriesInDiapason(List<Vegetable> vegetables, int min, int max) {
-        List<Vegetable> result = new ArrayList<>();
-        int calories = 0;
-        for (Vegetable v : vegetables) {
-            calories = calcCalories(v);
-            if (calories >= min && calories <= max) {
-                result.add(v);
-            }
-        }
-        return vegetables;
     }
 
     private static int calcCalories(Vegetable v) {

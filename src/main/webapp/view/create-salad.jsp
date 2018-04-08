@@ -83,7 +83,7 @@
                             <th><c:out value = "${vegetable.name}"/></th>
                             <th><c:out value = "${vegetable.calories}"/></th>
                             <th>
-                                <input type="number" class="form-control form-control-sm" name="w${loop.index}" min="0">
+                                <input type="number" class="form-control form-control-sm" name="w${vegetable.id}" min="0">
 
                             </th>
                         </tr>
